@@ -1,10 +1,10 @@
 // app.js
-import express from "express";
-import fetch from "node-fetch";
-import cors from "cors";
-import helmet from "helmet";
-import rateLimit from "express-rate-limit";
-import dotenv from "dotenv";
+const express = require('express');
+const fetch = require('node-fetch');
+const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -41,8 +41,8 @@ app.use(limiter);
 // ✅ Lấy API key từ .env
 const API_KEY = "AIzaSyCtQv0p4RP4eLrl1N7_vR8dw2pjI1Xs7kw";
 if (!API_KEY) {
-  console.error("❌ Chưa có API_KEY trong file .env!");
-  process.exit(1);
+  // ✅ CHỈ console.error, KHÔNG process.exit(1)
+  console.error("❌ Chưa có API_KEY. Vui lòng cấu hình trên Vercel Dashboard!");
 }
 
 // ✅ URL đến Gemini API
@@ -70,4 +70,4 @@ app.post("/analyze", async (req, res) => {
   }
 });
 
-export default app;
+module.exports = app;
