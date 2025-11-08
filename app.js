@@ -39,7 +39,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // ✅ Lấy API key từ .env
-const API_KEY = "AIzaSyCtQv0p4RP4eLrl1N7_vR8dw2pjI1Xs7kw";
+const API_KEY = process.env.API_KEY;
 if (!API_KEY) {
   // ✅ CHỈ console.error, KHÔNG process.exit(1)
   console.error("❌ Chưa có API_KEY. Vui lòng cấu hình trên Vercel Dashboard!");
@@ -69,5 +69,6 @@ app.post("/analyze", async (req, res) => {
     res.status(500).json({ error: "Lỗi máy chủ" });
   }
 });
+
 
 module.exports = app;
